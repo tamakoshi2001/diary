@@ -9,6 +9,7 @@ export const metadata = {
 }
 
 import Header from './layouts/Header'
+import MUIDateProvider from './MUIDateProvider'
 
 export default function RootLayout({
   children,
@@ -18,12 +19,14 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <div className='max-w-3xl min-h-screen bg-white mx-auto'>
-          <Header>日記</Header>
-          <main>
-            {children}
-          </main>
-        </div>
+        <MUIDateProvider>
+          <div className='max-w-3xl min-h-screen bg-white mx-auto'>
+            <Header>日記</Header>
+            <main>
+              {children}
+            </main>
+          </div>
+        </MUIDateProvider>
       </body>
     </html>
   )
