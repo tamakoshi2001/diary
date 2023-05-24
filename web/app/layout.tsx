@@ -20,9 +20,9 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <MUIDateProvider>
-          <div className='min-w-min w-auto max-w-3xl h-screen min-h-screen bg-white mx-auto'>
+          <div className='min-w-min w-auto max-w-3xl min-h-screen bg-white mx-auto'>
             <Header>日記</Header>
-            <main className='h-screen'>
+            <main>
               {children}
             </main>
           </div>
