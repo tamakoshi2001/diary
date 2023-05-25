@@ -1,5 +1,6 @@
 import firebase_admin
 from firebase_admin import firestore
+import json
 
 
 def main(request):
@@ -23,8 +24,19 @@ def main(request):
         if doc.exists:
             # フィールドの取得
             fields = doc.to_dict()
-            return (fields['text'], 200, headers)
+            text = fields['text']
+            is_text = 1
         else:
-            return ("日記がありません。", 200, headers)
+            text = "日記がありません。"
+            is_text = 0
+        status_code = 200
     except Exception as e:
-        return (str(e), 500, headers)
+        text = str(e)
+        is_text = 0
+        status_code = 500
+
+    response = json.dumps({
+        "text": text,
+        "is_text": is_text
+    })
+    return (response, status_code, headers)
