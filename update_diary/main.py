@@ -10,6 +10,10 @@ def main(request):
         'Access-Control-Allow-Headers': 'Content-Type'  # 許可するヘッダーを指定します
     }
 
+    if request.method == 'OPTIONS':
+        # Preflightリクエストの場合は、即座にレスポンスを返す
+        return ('', 204, headers)
+
     try:
         request = request.get_json(silent=True)
         date = request['date']

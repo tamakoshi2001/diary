@@ -10,8 +10,13 @@ def main(request):
         'Access-Control-Allow-Headers': 'Content-Type'  # 許可するヘッダーを指定します
     }
 
+    if request.method == 'OPTIONS':
+        # Preflightリクエストの場合は、即座にレスポンスを返す
+        return ('', 204, headers)
+
     if (not len(firebase_admin._apps)):
         firebase_admin.initialize_app()
+
     try:
         request = request.get_json(silent=True)
         date = request['date']
@@ -25,14 +30,14 @@ def main(request):
             # フィールドの取得
             fields = doc.to_dict()
             text = fields['text']
-            is_text = 1
+            is_text = True
         else:
             text = "日記がありません。"
-            is_text = 0
+            is_text = False
         status_code = 200
     except Exception as e:
         text = str(e)
-        is_text = 0
+        is_text = False
         status_code = 500
 
     response = json.dumps({
