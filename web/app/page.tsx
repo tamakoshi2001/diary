@@ -6,12 +6,16 @@ import { format } from 'date-fns';
 import CenterContainer from './components/CenterContainer';
 import DateForm from './components/DateForm';
 import DiaryForm, { DiaryObjType } from './components/DiaryForm';
+import SuccessMessageToast from './components/SuccessMessageToast';
 
 export default function Home() {
   const [date, setDate] = useState<Date | null>(null) // 日付フィールドの値
   const [diaryObj, setDiaryObj] = useState<DiaryObjType>({ // 表示する日記のデータ
     text: "", date: null, isPresent: false
   })
+
+  const [messageOnUpdated, setMessageOnUpdated] = useState("") // 更新完了メッセージ
+  const [isToastOpened, setIsToastOpened] = useState(false) // メッセージトーストが表示中か
 
   function handleDateChange(newValue: Date | null) {
     setDate(newValue)
@@ -35,7 +39,10 @@ export default function Home() {
   async function handleDiaryUpdate() {
     if (!diaryObj.date) return
 
-    await updateDiary(diaryObj.text, diaryObj.date)
+    const message = await updateDiary(diaryObj.text, diaryObj.date)
+
+    setMessageOnUpdated(message)
+    setIsToastOpened(true)
   }
 
   return (
@@ -54,6 +61,7 @@ export default function Home() {
           handleSubmit={handleDiaryUpdate}
         />
       </CenterContainer>
+      <SuccessMessageToast message={messageOnUpdated} isOpened={isToastOpened} setIsOpened={setIsToastOpened} />
     </>
   )
 }
