@@ -3,7 +3,7 @@ import requests
 import json
 import firebase_admin
 from firebase_admin import firestore
-
+from env import line_channel_access_token
 
 def add_diary(text):
     if (not len(firebase_admin._apps)):
@@ -30,7 +30,7 @@ def line_api(reply_token):
     api_endpoint = "https://api.line.me/v2/bot/message/reply"
 
     # LINEチャネルアクセストークン
-    channel_access_token = 'XXXX'
+    channel_access_token = line_channel_access_token
     messages = [
         {
             "type": "text",
