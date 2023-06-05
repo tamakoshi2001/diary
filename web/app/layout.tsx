@@ -8,7 +8,7 @@ export const metadata = {
   description: 'Make diary with a friend of mine',
 }
 
-import Header from './layouts/Header'
+import Header from './_layouts/Header'
 import MUIDateProvider from './MUIDateProvider'
 
 export default function RootLayout({
