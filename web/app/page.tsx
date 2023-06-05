@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 
-import CenterContainer from './components/CenterContainer';
-import DateForm from './components/DateForm';
-import DiaryForm from './components/DiaryForm';
-import SuccessMessageToast from './components/SuccessMessageToast';
+import CenterContainer from './_components/CenterContainer';
+import DateForm from './_components/DateForm';
+import DiaryForm from './_components/DiaryForm';
+import SuccessMessageToast from './_components/SuccessMessageToast';
 
 import { DiaryObjType, useDiary } from './useDiary';
 
