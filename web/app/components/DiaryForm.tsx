@@ -6,16 +6,12 @@ import { format } from 'date-fns';
 import { TextField } from "./mui";
 import CommonButton from "./CommonButton";
 
+import { DiaryObjType } from '../useDiary';
+
 type Props = {
     diary: DiaryObjType,
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     handleSubmit: () => void
-}
-
-export type DiaryObjType = {
-  text: string, // 日記の内容
-  date: Date | null, // 日記の日付
-  isPresent: boolean // 日記データの存在有無
 }
 
 export default function DiaryForm({ diary, handleChange, handleSubmit }: Props) {
